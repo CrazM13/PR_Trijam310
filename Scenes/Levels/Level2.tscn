@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://c2atpv1wagoxw"]
+
+[ext_resource type="PackedScene" uid="uid://dyk5fofdy7qe8" path="res://Assets/Prefabs/enemy.tscn" id="1_wulmh"]
+[ext_resource type="Texture2D" uid="uid://b5mn4nbxjqrcc" path="res://Assets/Placeholders/Background.png" id="2_oyuy6"]
+[ext_resource type="PackedScene" uid="uid://l48jb6mqy1ln" path="res://Assets/Prefabs/king.tscn" id="3_cfv1h"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ob80i"]
+distance = -446.88
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_7km4e"]
+normal = Vector2(0, 1)
+distance = -401.94
+
+[node name="Level2" type="Node2D"]
+
+[node name="LevelBounds" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelBounds"]
+shape = SubResource("WorldBoundaryShape2D_ob80i")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="LevelBounds"]
+shape = SubResource("WorldBoundaryShape2D_7km4e")
+
+[node name="Enemy" parent="." instance=ExtResource("1_wulmh")]
+position = Vector2(1279, 259)
+MovementSpeed = 400.0
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+z_index = -100
+z_as_relative = false
+repeat_size = Vector2(1920, 0)
+autoscroll = Vector2(-400, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
+texture = ExtResource("2_oyuy6")
+
+[node name="King" parent="." instance=ExtResource("3_cfv1h")]
+position = Vector2(3111, 0)
+MovementSpeed = 400.0
+
+[node name="Enemy2" parent="." instance=ExtResource("1_wulmh")]
+position = Vector2(1288, -262)
+rotation = 3.14159
+MovementSpeed = 400.0
+ApplyGravity = false

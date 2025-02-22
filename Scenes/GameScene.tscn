@@ -1,3 +1,185 @@
-[gd_scene format=3 uid="uid://bwq6aclsmurs0"]
+[gd_scene load_steps=25 format=3 uid="uid://bwq6aclsmurs0"]
+
+[ext_resource type="Script" path="res://Scripts/Character.cs" id="1_r2ly8"]
+[ext_resource type="Script" path="res://Scripts/PlayerController.cs" id="2_cpy4e"]
+[ext_resource type="Texture2D" uid="uid://d4kx230crshtm" path="res://Assets/Placeholders/Bat.png" id="3_ecyr2"]
+[ext_resource type="Texture2D" uid="uid://ba5lquec4vcii" path="res://Assets/Placeholders/Vampire.png" id="3_ppd20"]
+[ext_resource type="Texture2D" uid="uid://bu3qyfah5ses3" path="res://Assets/Placeholders/Vampire_Mist.png" id="4_l6j5y"]
+[ext_resource type="Script" path="res://Scripts/PlayerAnimator.cs" id="6_baeov"]
+[ext_resource type="Texture2D" uid="uid://b41pvbgoajbn0" path="res://Assets/Placeholders/UI_Button_Bat.png" id="7_pb2b1"]
+[ext_resource type="AudioStream" uid="uid://bke1sa41ufr0" path="res://Assets/Audio/SFX/TransformSFX.wav" id="7_v64t6"]
+[ext_resource type="AudioStream" uid="uid://2l32cyltvhkh" path="res://Assets/Audio/SFX/Click.wav" id="8_jwmm8"]
+[ext_resource type="Texture2D" uid="uid://c32f0jfykf4jp" path="res://Assets/Placeholders/UI_Button_Mist.png" id="8_rriha"]
+[ext_resource type="Theme" uid="uid://bj13h6tlhjklk" path="res://Assets/Themes/GameTheme.tres" id="9_csv5p"]
+[ext_resource type="Texture2D" uid="uid://bjlrice1hwol0" path="res://Assets/Placeholders/UI_Transform_Progress_Bar.png" id="9_xad8i"]
+[ext_resource type="Texture2D" uid="uid://tyefr0efo0uf" path="res://Assets/Placeholders/UI_Transform_Progress_Bar_fill.png" id="10_x5pel"]
+[ext_resource type="Script" path="res://Scripts/TimerProgressBar.cs" id="11_7tnrk"]
+[ext_resource type="AudioStream" uid="uid://d3a4xlhkimcuw" path="res://Assets/Audio/Music/Jester.wav" id="13_h6cvk"]
+[ext_resource type="Script" path="res://Scripts/LevelSpawner.cs" id="13_iq5ww"]
+[ext_resource type="Script" path="res://Scripts/BGMusic.cs" id="14_kfohx"]
+[ext_resource type="Texture2D" uid="uid://bo35plugaavtm" path="res://Assets/Icons/volume-x.svg" id="14_vb54e"]
+[ext_resource type="Texture2D" uid="uid://c3fj7exw1u1g5" path="res://Assets/Icons/volume-2.svg" id="15_mbpn6"]
+[ext_resource type="Script" path="res://Scripts/MuteButton.cs" id="16_155n2"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_od3g0"]
+radius = 56.0
+height = 272.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jqpep"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_ecyr2")
+}],
+"loop": true,
+"name": &"vampire_bat_flying",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_l6j5y")
+}],
+"loop": true,
+"name": &"vampire_mist",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_ppd20")
+}],
+"loop": true,
+"name": &"vampire_running",
+"speed": 5.0
+}]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_g0sox"]
+normal = Vector2(1, 0)
+distance = -957.01
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_qg55a"]
+normal = Vector2(-1, 0)
+distance = -167.64
 
 [node name="GameScene" type="Node2D"]
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(-737, 250)
+collision_layer = 2147483648
+collision_mask = 3
+script = ExtResource("1_r2ly8")
+Label = "PLAYER"
+Drag = 1.0
+FallingPower = 10.0
+JumpForce = 9000.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("CapsuleShape2D_od3g0")
+
+[node name="PlayerMovement" type="Node" parent="Player" node_paths=PackedStringArray("characterBody")]
+script = ExtResource("2_cpy4e")
+characterBody = NodePath("..")
+
+[node name="TransformTimer" type="Timer" parent="Player"]
+one_shot = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+sprite_frames = SubResource("SpriteFrames_jqpep")
+animation = &"vampire_running"
+autoplay = "vampire_running"
+script = ExtResource("6_baeov")
+
+[node name="Audio" type="Node2D" parent="Player"]
+
+[node name="TransformSFX" type="AudioStreamPlayer2D" parent="Player/Audio"]
+stream = ExtResource("7_v64t6")
+bus = &"SFX"
+
+[node name="HitSFX" type="AudioStreamPlayer2D" parent="Player/Audio"]
+stream = ExtResource("8_jwmm8")
+bus = &"SFX"
+
+[node name="PlayerBounds" type="StaticBody2D" parent="."]
+collision_layer = 2
+collision_mask = 2147483648
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="PlayerBounds"]
+shape = SubResource("WorldBoundaryShape2D_g0sox")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="PlayerBounds"]
+shape = SubResource("WorldBoundaryShape2D_qg55a")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.6, 0.6)
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("9_csv5p")
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="HUD/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+icon = ExtResource("7_pb2b1")
+
+[node name="Button2" type="Button" parent="HUD/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+icon = ExtResource("8_rriha")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="HUD/HBoxContainer" node_paths=PackedStringArray("timer")]
+layout_mode = 2
+max_value = 1.0
+step = 0.0
+value = 1.0
+fill_mode = 1
+texture_over = ExtResource("9_xad8i")
+texture_progress = ExtResource("10_x5pel")
+script = ExtResource("11_7tnrk")
+timer = NodePath("../../../Player/TransformTimer")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="HUD"]
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+theme = ExtResource("9_csv5p")
+alignment = 2
+
+[node name="TextureButton" type="TextureButton" parent="HUD/HBoxContainer2"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+toggle_mode = true
+texture_normal = ExtResource("15_mbpn6")
+texture_pressed = ExtResource("14_vb54e")
+script = ExtResource("16_155n2")
+bus = "Music"
+
+[node name="LevelContainer" type="Node2D" parent="."]
+script = ExtResource("13_iq5ww")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_h6cvk")
+autoplay = true
+bus = &"Music"
+script = ExtResource("14_kfohx")
+
+[connection signal="CollideWithCharacter" from="Player" to="Player/Audio/HitSFX" method="play" unbinds=1]
+[connection signal="TransformBat" from="Player/PlayerMovement" to="Player/AnimatedSprite2D" method="TransformIntoBat"]
+[connection signal="TransformBat" from="Player/PlayerMovement" to="Player/TransformTimer" method="start" binds= [5.0]]
+[connection signal="TransformBat" from="Player/PlayerMovement" to="Player/Audio/TransformSFX" method="play" binds= [0.0]]
+[connection signal="TransformMist" from="Player/PlayerMovement" to="Player/AnimatedSprite2D" method="TransformIntoMist"]
+[connection signal="TransformMist" from="Player/PlayerMovement" to="Player/TransformTimer" method="start" binds= [5.0]]
+[connection signal="TransformMist" from="Player/PlayerMovement" to="Player/Audio/TransformSFX" method="play" binds= [0.0]]
+[connection signal="timeout" from="Player/TransformTimer" to="Player/PlayerMovement" method="Untransform"]
+[connection signal="timeout" from="Player/TransformTimer" to="Player/AnimatedSprite2D" method="TransformIntoVampire"]
+[connection signal="pressed" from="HUD/HBoxContainer/HBoxContainer/Button" to="Player/PlayerMovement" method="AttemptTurnIntoBat"]
+[connection signal="pressed" from="HUD/HBoxContainer/HBoxContainer/Button2" to="Player/PlayerMovement" method="AttemptTurnIntoMist"]
+[connection signal="finished" from="AudioStreamPlayer" to="AudioStreamPlayer" method="play" binds= [0.0]]
