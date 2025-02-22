@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://Scripts/Character.cs" id="1_r2ly8"]
 [ext_resource type="Script" path="res://Scripts/PlayerController.cs" id="2_cpy4e"]
-[ext_resource type="Texture2D" uid="uid://d4kx230crshtm" path="res://Assets/Placeholders/Bat.png" id="3_ecyr2"]
-[ext_resource type="Texture2D" uid="uid://ba5lquec4vcii" path="res://Assets/Placeholders/Vampire.png" id="3_ppd20"]
-[ext_resource type="Texture2D" uid="uid://bu3qyfah5ses3" path="res://Assets/Placeholders/Vampire_Mist.png" id="4_l6j5y"]
+[ext_resource type="Texture2D" uid="uid://dd3snpfvhsouo" path="res://Assets/Bat.png" id="3_mvuwv"]
+[ext_resource type="Texture2D" uid="uid://dtwqthumdti58" path="res://Assets/Transform Smoke.png" id="4_st667"]
+[ext_resource type="Texture2D" uid="uid://jm0c38uwp6n3" path="res://Assets/Vampire.png" id="5_41ia2"]
 [ext_resource type="Script" path="res://Scripts/PlayerAnimator.cs" id="6_baeov"]
 [ext_resource type="Texture2D" uid="uid://b41pvbgoajbn0" path="res://Assets/Placeholders/UI_Button_Bat.png" id="7_pb2b1"]
 [ext_resource type="AudioStream" uid="uid://bke1sa41ufr0" path="res://Assets/Audio/SFX/TransformSFX.wav" id="7_v64t6"]
@@ -29,7 +29,7 @@ height = 272.0
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_ecyr2")
+"texture": ExtResource("3_mvuwv")
 }],
 "loop": true,
 "name": &"vampire_bat_flying",
@@ -37,7 +37,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_l6j5y")
+"texture": ExtResource("4_st667")
 }],
 "loop": true,
 "name": &"vampire_mist",
@@ -45,7 +45,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_ppd20")
+"texture": ExtResource("5_41ia2")
 }],
 "loop": true,
 "name": &"vampire_running",
@@ -84,7 +84,7 @@ one_shot = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
 sprite_frames = SubResource("SpriteFrames_jqpep")
-animation = &"vampire_running"
+animation = &"vampire_bat_flying"
 autoplay = "vampire_running"
 script = ExtResource("6_baeov")
 

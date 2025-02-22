@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dyk5fofdy7qe8"]
 
 [ext_resource type="Script" path="res://Scripts/Character.cs" id="1_b7wkb"]
-[ext_resource type="Texture2D" uid="uid://c6732udycwii" path="res://Assets/Placeholders/Guard.png" id="2_7dj7f"]
+[ext_resource type="Texture2D" uid="uid://dtcc8bl4jauty" path="res://Assets/Guard.png" id="2_tapn7"]
 [ext_resource type="Script" path="res://Scripts/EnemyMovement.cs" id="3_qqfwb"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a8cti"]
@@ -17,7 +17,7 @@ MovementSpeed = 100.0
 shape = SubResource("CapsuleShape2D_a8cti")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_7dj7f")
+texture = ExtResource("2_tapn7")
 
 [node name="EnemyMovement" type="Node" parent="." node_paths=PackedStringArray("characterBody")]
 script = ExtResource("3_qqfwb")

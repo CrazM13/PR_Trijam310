@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://l48jb6mqy1ln" path="res://Assets/Prefabs/king.tscn" id="1_hu8l4"]
 [ext_resource type="PackedScene" uid="uid://dyk5fofdy7qe8" path="res://Assets/Prefabs/enemy.tscn" id="2_fjaft"]
-[ext_resource type="Texture2D" uid="uid://b5mn4nbxjqrcc" path="res://Assets/Placeholders/Background.png" id="3_gamlm"]
+[ext_resource type="Texture2D" uid="uid://bg3vgcf5k02jw" path="res://Assets/Background.png" id="3_yk1ly"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ob80i"]
 distance = -446.88
@@ -22,17 +22,27 @@ shape = SubResource("WorldBoundaryShape2D_ob80i")
 shape = SubResource("WorldBoundaryShape2D_7km4e")
 
 [node name="King" parent="LevelBounds" instance=ExtResource("1_hu8l4")]
-position = Vector2(3111, 0)
+position = Vector2(10183, -24)
+MovementSpeed = 400.0
 
 [node name="Enemy" parent="." instance=ExtResource("2_fjaft")]
 position = Vector2(1288, 0)
+MovementSpeed = 400.0
+
+[node name="Enemy2" parent="." instance=ExtResource("2_fjaft")]
+position = Vector2(4848, 0)
+MovementSpeed = 400.0
+
+[node name="Enemy3" parent="." instance=ExtResource("2_fjaft")]
+position = Vector2(8336, 24)
+MovementSpeed = 400.0
 
 [node name="Parallax2D" type="Parallax2D" parent="."]
 z_index = -100
 z_as_relative = false
 repeat_size = Vector2(1920, 0)
-autoscroll = Vector2(-100, 0)
+autoscroll = Vector2(-400, 0)
 repeat_times = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
-texture = ExtResource("3_gamlm")
+texture = ExtResource("3_yk1ly")

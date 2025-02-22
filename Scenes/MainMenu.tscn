@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://b5130ryan23xf"]
+[gd_scene load_steps=8 format=3 uid="uid://b5130ryan23xf"]
 
 [ext_resource type="Theme" uid="uid://bj13h6tlhjklk" path="res://Assets/Themes/GameTheme.tres" id="1_22fub"]
 [ext_resource type="Texture2D" uid="uid://ccdr0liulc15x" path="res://Assets/Icons/play.svg" id="1_rska1"]
 [ext_resource type="Texture2D" uid="uid://biwf4cys3gl1m" path="res://Assets/Icons/x-octagon.svg" id="2_kqs26"]
+[ext_resource type="Texture2D" uid="uid://bg3vgcf5k02jw" path="res://Assets/Background.png" id="2_p7vr5"]
 [ext_resource type="Script" path="res://Scripts/SceneManager.cs" id="4_q5ldi"]
+[ext_resource type="Script" path="res://Scripts/ResetButton.cs" id="4_q7n81"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_y75on"]
 font_size = 91
@@ -16,6 +18,17 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_22fub")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_p7vr5")
+expand_mode = 2
+stretch_mode = 5
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
@@ -40,7 +53,7 @@ grow_vertical = 2
 [node name="Label" type="Label" parent="CenterContainer/Panel/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 6
-text = "Game Title"
+text = "Blood Dash"
 label_settings = SubResource("LabelSettings_y75on")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -61,6 +74,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Play"
 icon = ExtResource("1_rska1")
+script = ExtResource("4_q7n81")
 
 [node name="VSeparator" type="VSeparator" parent="CenterContainer/Panel/VBoxContainer/HBoxContainer"]
 self_modulate = Color(1, 1, 1, 0)

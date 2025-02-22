@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://oe4y6cw1hhtu"]
 
 [ext_resource type="PackedScene" uid="uid://dyk5fofdy7qe8" path="res://Assets/Prefabs/enemy.tscn" id="1_xxhqp"]
-[ext_resource type="Texture2D" uid="uid://b5mn4nbxjqrcc" path="res://Assets/Placeholders/Background.png" id="2_rceb8"]
+[ext_resource type="Texture2D" uid="uid://bg3vgcf5k02jw" path="res://Assets/Background.png" id="2_4ytg5"]
 [ext_resource type="PackedScene" uid="uid://l48jb6mqy1ln" path="res://Assets/Prefabs/king.tscn" id="3_s68we"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_u2qlg"]
@@ -23,32 +23,40 @@ shape = SubResource("WorldBoundaryShape2D_kw0up")
 
 [node name="Enemy" parent="." instance=ExtResource("1_xxhqp")]
 position = Vector2(1288, 0)
-MovementSpeed = 400.0
+MovementSpeed = 800.0
 
 [node name="Parallax2D" type="Parallax2D" parent="."]
 z_index = -100
 z_as_relative = false
 repeat_size = Vector2(1920, 0)
-autoscroll = Vector2(-400, 0)
+autoscroll = Vector2(-800, 0)
 repeat_times = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
-texture = ExtResource("2_rceb8")
+texture = ExtResource("2_4ytg5")
 
 [node name="King" parent="." instance=ExtResource("3_s68we")]
-position = Vector2(7166, 0)
-MovementSpeed = 400.0
+position = Vector2(11781, -12)
+MovementSpeed = 800.0
 
 [node name="Enemy2" parent="." instance=ExtResource("1_xxhqp")]
 position = Vector2(2703, 0)
-MovementSpeed = 400.0
+MovementSpeed = 800.0
 
 [node name="Enemy3" parent="." instance=ExtResource("1_xxhqp")]
 position = Vector2(5588, 0)
-MovementSpeed = 400.0
+MovementSpeed = 800.0
+
+[node name="Enemy5" parent="." instance=ExtResource("1_xxhqp")]
+position = Vector2(9376, -24)
+MovementSpeed = 800.0
+
+[node name="Enemy6" parent="." instance=ExtResource("1_xxhqp")]
+position = Vector2(7482, 24)
+MovementSpeed = 800.0
 
 [node name="Enemy4" parent="." instance=ExtResource("1_xxhqp")]
 position = Vector2(4118, -267)
 rotation = -3.14159
-MovementSpeed = 400.0
+MovementSpeed = 800.0
 ApplyGravity = false

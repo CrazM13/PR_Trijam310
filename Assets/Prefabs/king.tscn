@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://l48jb6mqy1ln"]
 
 [ext_resource type="Script" path="res://Scripts/Character.cs" id="1_i12yc"]
-[ext_resource type="Texture2D" uid="uid://g8avhd7wooa8" path="res://Assets/Placeholders/King on a Throne.png" id="2_2rutw"]
+[ext_resource type="Texture2D" uid="uid://d2k3um6yjdago" path="res://Assets/King on a Throne.png" id="2_da5us"]
 [ext_resource type="Script" path="res://Scripts/EnemyMovement.cs" id="3_esp6j"]
 [ext_resource type="Script" path="res://Scripts/WinTrigger.cs" id="4_wfk7f"]
 
@@ -10,7 +10,7 @@ radius = 179.0
 height = 550.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_28nds"]
-size = Vector2(1088.5, 1242)
+size = Vector2(10582, 5488)
 
 [node name="King" type="CharacterBody2D"]
 collision_layer = 128
@@ -21,7 +21,7 @@ MovementSpeed = 100.0
 shape = SubResource("CapsuleShape2D_3l1i6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_2rutw")
+texture = ExtResource("2_da5us")
 
 [node name="EnemyMovement" type="Node" parent="." node_paths=PackedStringArray("characterBody")]
 script = ExtResource("3_esp6j")
@@ -33,5 +33,5 @@ collision_mask = 2147483648
 script = ExtResource("4_wfk7f")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(281.25, -133)
+position = Vector2(5028, 97)
 shape = SubResource("RectangleShape2D_28nds")

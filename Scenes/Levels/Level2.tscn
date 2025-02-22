@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://c2atpv1wagoxw"]
 
 [ext_resource type="PackedScene" uid="uid://dyk5fofdy7qe8" path="res://Assets/Prefabs/enemy.tscn" id="1_wulmh"]
-[ext_resource type="Texture2D" uid="uid://b5mn4nbxjqrcc" path="res://Assets/Placeholders/Background.png" id="2_oyuy6"]
+[ext_resource type="Texture2D" uid="uid://bg3vgcf5k02jw" path="res://Assets/Background.png" id="2_kkgmk"]
 [ext_resource type="PackedScene" uid="uid://l48jb6mqy1ln" path="res://Assets/Prefabs/king.tscn" id="3_cfv1h"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ob80i"]
@@ -23,24 +23,44 @@ shape = SubResource("WorldBoundaryShape2D_7km4e")
 
 [node name="Enemy" parent="." instance=ExtResource("1_wulmh")]
 position = Vector2(1279, 259)
-MovementSpeed = 400.0
+MovementSpeed = 800.0
+
+[node name="Enemy5" parent="." instance=ExtResource("1_wulmh")]
+position = Vector2(3343, 371)
+MovementSpeed = 800.0
+
+[node name="Enemy6" parent="." instance=ExtResource("1_wulmh")]
+position = Vector2(6775, 363)
+MovementSpeed = 800.0
 
 [node name="Parallax2D" type="Parallax2D" parent="."]
 z_index = -100
 z_as_relative = false
 repeat_size = Vector2(1920, 0)
-autoscroll = Vector2(-400, 0)
+autoscroll = Vector2(-800, 0)
 repeat_times = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
-texture = ExtResource("2_oyuy6")
+texture = ExtResource("2_kkgmk")
 
 [node name="King" parent="." instance=ExtResource("3_cfv1h")]
-position = Vector2(3111, 0)
-MovementSpeed = 400.0
+position = Vector2(10213, -40)
+MovementSpeed = 800.0
 
 [node name="Enemy2" parent="." instance=ExtResource("1_wulmh")]
 position = Vector2(1288, -262)
 rotation = 3.14159
-MovementSpeed = 400.0
+MovementSpeed = 800.0
+ApplyGravity = false
+
+[node name="Enemy3" parent="." instance=ExtResource("1_wulmh")]
+position = Vector2(4856, -326)
+rotation = 3.14159
+MovementSpeed = 800.0
+ApplyGravity = false
+
+[node name="Enemy4" parent="." instance=ExtResource("1_wulmh")]
+position = Vector2(8144, -358)
+rotation = 3.14159
+MovementSpeed = 800.0
 ApplyGravity = false
